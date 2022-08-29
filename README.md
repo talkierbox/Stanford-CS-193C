@@ -1,6 +1,8 @@
 ## CS 193C - Stanford University - Summer Quarter 2022
 Hello! Please do not use these files to cheat. If anything, use them as a way to learn!
 
+This repository is meant to be an archive for me to host these files, and show what we worked on!
+
 I doubt you can even use these to cheat. They run stuff through plagirism detection and my code isn't very versatile. It's better to try to do it yourself!
 
 Thanks!
