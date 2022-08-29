@@ -1,0 +1,77 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 600px 340px 100px;
+    grid-template-rows: 90px;
+    row-gap: 5px;
+}
+
+h1 {
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
+
+#table-container {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+#search-container {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+#search {
+    border: 3px black solid;
+    padding: 2px;
+}
+
+.heading {
+    background-color: rgb(62, 62, 62);
+    color: white;
+    padding: 6px;
+    padding-left: 20px; 
+    padding-right: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+th {
+    margin: 2px;
+}
+
+form {
+    max-height: 110%;
+}
+
+form > div.heading {
+    margin-bottom: 10px;
+}
+
+.spacing {
+    margin-bottom: 7px;
+}
+
+.text-input-label {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.text-input-sub {
+    margin-left: 5px;
+    font-size: small;
+}
+
+td {
+    padding: 7px;
+    margin: 2px;
+}
+
+.table-grey {
+    background-color: rgb(191, 191, 191);
+}
+
+/* Gave up on the extra challenge of row sorting on click */

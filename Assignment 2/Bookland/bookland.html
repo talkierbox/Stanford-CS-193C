@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            * {
+                font-family: sans-serif;
+            }
+            #main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: white;
+            }
+            h1 {
+                font-size: 30px;
+            }
+            input {
+                margin: 5px;
+            }
+            #header {
+                background-color: #EEEE;
+                padding: 4px;
+                margin-bottom: 50px; 
+                text-align: center; 
+                border-bottom: 1px solid gray;  
+            }
+            form {
+                background-color: #EEEE;
+                padding: 30px;
+                padding-top: 1px;
+                margin: 5px;
+                border-radius: 10px;
+            }
+            body {
+                margin: 0px;
+            }
+            #btns {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #btns > input {
+                border: 1px solid black;
+                border-radius: 6px;
+            }
+
+            #results {
+                visibility: hidden;
+                display: flex;
+                flex-direction: column;
+                background-color: #EEEE;
+                padding: 30px;
+                padding-top: 20px;
+                margin: 5px;
+                border-radius: 8px;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .red {
+                text-align: center;
+                font-weight: bold;
+                color: red;
+            }
+
+            .bold {
+                font-weight: bold;
+            }
+        </style>
+        <title>Bookland!</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1>📚 Bookland</h1>
+        </div>
+        <div id="main-container">
+            <form id="lookup">
+                <h2>🔎 Search!</h2>
+                <label for="book-field">🧑 Author Name (Exact): </label>
+                <input type="text" id="author-field">
+                <br>
+                <label for="book-field">📖 Book Name (Includes): </label>
+                <input type="text" id="book-field">
+                <br>
+                <div id="btns">
+                    <input type="button" id="submit-btn" value="Search">
+                    <input type="button" id="clear-btn" value="Clear">
+                </div>
+            </form>
+        </div>
+
+        <div id="results">
+            <p id="infoText">Test!</p>
+        </div>
+        <script>
+            let bookData = [{
+                "author": "Thomas Mann",
+                "title": "Death in Venice",
+                "description": `One of the most famous literary works of the twentieth century, this novella embodies themes that preoccupied Thomas Mann in much of his work: the duality of art and life, the presence of death and disintegration in the midst of existence, the connection between love and suffering and the conflict between the artist and his inner self.`
+            },{
+                "author": "James Joyce",
+                "title": "A portrait of the artist as a young man",
+                "description": "This book is a fictional re-creation of the Irish writer's own life and early environment. The experiences of the novel's young hero, unfold in astonishingly vivid scenes that seem freshly recalled from life and provide a powerful portrait of the coming of age of a young man of unusual intelligence, sensitivity and character."
+            },{
+                "author": "E. M. Forster",
+                "title": "A room with a view",
+                "description": "This work displays an unusually perceptive view of British society in the early 20th century.It is a social comedy set in Florence, Italy, and Surrey, England. Its heroine, Lucy Honeychurch, struggling against straitlaced Victorian attitudes of arrogance, narroe mindedness and sobbery, falls in love - while on holiday in Italy - with the socially unsuitable George Emerson."
+            },{
+                "author": "Isabel Allende",
+                "title": "The house of spirits",
+                "description": "Allende describes the life of three generations of a prominent family in Chile and skillfully combines with this all the main historical events of the time, up until Pinochet's dictatorship."
+            },{
+                "author": "Isabel Allende",
+                "title": "Of love and shadows",
+                "description": "The whole world of Irene Beltran, a young reporter in Chile at the time of the dictatorship, is destroyed when she discovers a series of killings carried out by government soldiers. With the help of a photographer, Francisco Leal, and risking her life, she tries to come up with evidence against the dictatorship."
+            }];
+
+            let authorField = document.getElementById("author-field");
+            let bookField = document.getElementById("book-field");
+            let submitBTN = document.getElementById("submit-btn");
+            let clearBTN = document.getElementById("clear-btn");
+            let resultsHTML = document.getElementById("results");
+
+            clearBTN.disabled = true;
+
+            submitBTN.addEventListener("click", () => {
+                if(!authorField.value &&! bookField.value) {
+                    authorField.value = "Invalid Input!";
+                    authorField.style.borderColor = "red";
+                    bookField.style.borderColor = "red";
+                    submitBTN.disabled = true;
+
+                    setTimeout(() => {
+                        authorField.style.borderColor = "black";
+                        bookField.style.borderColor = "black";
+                        authorField.value = "";
+                        submitBTN.disabled = false;
+                    }, 1500);
+                    return;
+                }
+
+                clearBTN.disabled = false;
+
+                let results = [];
+                if (authorField.value && bookField.value){
+                    bookData.forEach(bookObj => {
+                        if (bookObj.author.toLowerCase() == authorField.value.toLowerCase() && bookObj.title.toLowerCase().includes(bookField.value.toLowerCase())) results.push(bookObj);
+                    });
+                }
+                else if (authorField.value) {
+                    bookData.forEach(bookObj => {
+                        if (bookObj.author.toLowerCase() == authorField.value.toLowerCase()) results.push(bookObj);
+                    });
+                }
+                else if (bookField.value) {
+                    bookData.forEach(bookObj => {
+                        if (bookObj.title.toLowerCase().includes(bookField.value.toLowerCase())) results.push(bookObj);
+                    });
+                }
+
+                if(results.length == 0) {
+                    resultsHTML.innerHTML = `<span class="red">No Results Found!</span>`;
+                    resultsHTML.style.visibility = "visible";
+                    return;
+                }
+                
+                let textArr = [];
+                results.forEach(item => {
+                    return textArr.push(`<span class="bold">${item.title}</span>\n<span>by ${item.author}</span>\n<span>${item.description}</span>\n<br>`)
+                })
+
+                resultsHTML.innerHTML = textArr.join("\n");
+                resultsHTML.style.visibility = "visible";
+            })
+
+            clearBTN.addEventListener("click", () => {
+                authorField.value = "";
+                bookField.value = "";
+                resultsHTML.style.visibility = "hidden";
+                clearBTN.disabled = true;
+            })
+        </script>
+    </body>
+</html>

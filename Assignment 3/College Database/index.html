@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="styles.css">
+        <title>Bay Area Universities Search</title>
+        <!-- This is a file I made full of my own helper functions. NO JQUERY WAS USED, THIS IS ALL PURE JS-->
+        <script src="hr-scripts.js"></script>
+        <script src="colleges.js" defer></script>
+    </head>
+    <body>
+        <h1>Bay Area Colleges And Universities</h1>
+        <div id="table-container">
+            <table id="college-table">
+                <tr>
+                    <th class="heading" id="name-heading">Name</th>
+                    <th class="heading" id="sat-high-heading">SAT High</th>
+                    <th class="heading" id="sat-low-heading">SAT Low</th>
+                    <th class="heading" id="tuition-heading">Tuition</th>
+                </tr>
+            </table>
+        </div>
+        <div id="search-container">
+            <form id="search">
+                <div class="heading">Search</div>
+                <input type="radio" id="public" name="school-type" value="public">
+                <label for="public">Public</label>
+                <input type="radio" id="private" name="school-type" value="private">
+                <label for="private">Private</label>
+                <input type="radio" id="dont-care" name="school-type" value="none">
+                <label for="dont-care">Don't Care</label>
+                <div class="spacing"></div>
+                <label class="text-input-label" for="cost-max">Maximum Cost</label>
+                <input type="text" id="cost-max">
+                <div class="text-input-sub">Leave blank if don't care</div>
+                <div class="spacing"></div>
+                <label class="text-input-label" for="sat-max">Maximum High SAT</label>
+                <input type="text" id="sat-max">
+                <div class="text-input-sub">Leave blank if don't care</div>
+                <div class="spacing"></div>
+                <label class="text-input-label" for="sat-low">Minimum Low SAT</label>
+                <input type="text" id="sat-low">
+                <div class="text-input-sub">Leave blank if don't care</div>
+                <div class="spacing"></div>
+                <input type="button" value="Submit" id="submit-btn">
+            </form>
+        </div>
+    </body>
+</html>

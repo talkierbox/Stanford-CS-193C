@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Untitled Document</title>
+<style>
+
+#box {
+	background-color: red;
+	border: thin black solid;
+}
+
+</style>
+</head>
+
+<body>
+<!-- could just use transform instead of position: absolute combined with tranform, but remember transform by itself works like position: relative this will leave a hole where the div would have been, depending on what you're using this for, that could be a problem -->
+<div id="box" style="position: absolute; left: 0px; top: 0px; width: 50px; height: 50px; transform: translate(150px,150px);"></div>
+
+<script>
+
+/// INFORMATION RETRIEVAL FUNCTIONS
+function getBoxHeight() {
+	var box = document.getElementById("box");
+	return parseInt(box.style.height);
+}
+
+function getBoxWidth() {
+	var box = document.getElementById("box");
+	return parseInt(box.style.width);
+}
+
+function getTransformX() {
+	var transform = document.getElementById("box").style.transform;
+	var xStrStart = transform.indexOf("translate(") + "translate(".length;
+	var xStrEnd = transform.indexOf(",",xStrStart);
+	var xStr = transform.substring(xStrStart,xStrEnd);
+	return parseInt(xStr);
+}
+
+function getTransformY() {
+	var transform = document.getElementById("box").style.transform;
+	var xStrStart = transform.indexOf("translate(") + "translate(".length;
+	var yStrStart = transform.indexOf(",",xStrStart) + 1;
+	var yStrEnd = transform.indexOf(")",yStrStart);
+	var yStr = transform.substring(yStrStart,yStrEnd);
+	return parseInt(yStr);
+}
+
+getTransformY();
+
+function getBoxTop() {
+	var box = document.getElementById("box");
+	return getTransformY();
+}
+
+function getBoxLeft() {
+	var box = document.getElementById("box");
+	return getTransformX();
+}
+
+function inBox(x,y) {
+	return (x >= getBoxLeft() && x <= getBoxLeft() + getBoxWidth()
+				&& y >= getBoxTop() && y <= getBoxTop() + getBoxHeight());
+}
+
+/// DRAGGING FUNCTIONS
+// for real dragging, you'll want to track the distance between where the
+// mouse button is going down and the actual corner of the box
+
+var isDragging = false;
+
+function handleMouseDown(event) {
+	if (inBox(event.clientX,event.clientY)) {
+		isDragging = true;
+		return false;	// don't forget this line or some versions of Firefox will get in trouble when dragging
+	}
+}
+
+function handleMouseUp(event) {
+	if (isDragging) {
+		var box = document.getElementById("box");
+		box.style.transform = 
+				"translate(" + event.clientX + "px,"
+						     + event.clientY + "px)"
+		isDragging = false;		
+	}
+}
+
+function handleMouseMove(event) {
+	if (isDragging) {
+		var box = document.getElementById("box");
+		box.style.transform = 
+				"translate(" + event.clientX + "px,"
+						     + event.clientY + "px)"
+		
+		return false;  // don't forget this line or some versions of IE won't allow dragging;
+	}
+}
+
+/// SETUP FUNCTIONS
+
+document.addEventListener("mousedown",handleMouseDown,false);
+document.addEventListener("mouseup",handleMouseUp,false);
+document.addEventListener("mousemove",handleMouseMove,false);
+
+</script>
+</body>
+</html>

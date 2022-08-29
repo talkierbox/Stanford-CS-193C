@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            * {
+                font-family: sans-serif;
+            }
+
+            body {
+                display: grid;
+                grid-template-columns: 1fr 2fr 2fr 1fr;
+                grid-template-rows: 123px;
+                row-gap: 5px;
+            }
+
+            #left-container {
+                grid-column: 2/3;
+                grid-row: 2;
+                display: flex;
+                flex-direction: column;
+            }
+
+            #right-container {
+                grid-column: 3/4;
+                grid-row: 2;
+                display: flex;
+                flex-direction: column;
+            }
+
+            h1 {
+                grid-column: 2/4;
+                padding: 5px;
+            }
+
+            .label {
+                background-color: gray;
+                color: white;
+                padding: 5px;
+            }
+
+            .cost {
+                float: right;
+            }
+
+            form {
+                padding: 5px;
+                margin: 3px;
+                border: 2px solid gray;
+                padding-bottom: 20px;
+            }
+
+            ul {
+                margin-top: 3px;
+            }
+
+            li {
+                font-size: small;
+            }
+
+            #selector-container {
+                display: flex;
+                flex-direction: row;
+            }
+
+            select {
+                order: 1;
+            }
+
+            img {
+                order: 2;
+                margin: 30px;
+            }
+
+            select {
+                height: 20px;
+            }
+        </style>
+        <title>Car Configurer!</title>
+    </head>
+    <body>
+        <h1>Configure Your GT Super Sportscar!</h1>
+        <div id="left-container">
+            <form id="configuration-form">
+                    <h2 class="label">Configuration</h2>
+                    <input type="radio" id="manual" name="configuration" value="17790">
+                    <label for="manual">GT Manual <span class="cost">$17,790.00</span></label><br>
+                    <input type="radio" id="auto" name="configuration" value="18590">
+                    <label for="auto">GT Auto <span class="cost">$18,590.00</span></label><br>
+                    <input type="radio" id="s-manual" name="configuration" value="22455">
+                    <label for="s-manual">GT-S Manual <span class="cost">$22,455.00</span></label><br>
+                    <input type="radio" id="s-auto" name="configuration" value="23155">
+                    <label for="s-auto">GT-S Auto <span class="cost">$23,155.00</span></label><br>
+            </form>
+            <form id="combo-form">
+                <h2 class="label">Factory Options</h2>
+                <input type="radio" id="combo-1" name="options" value="1235">
+                <label for="combo-1">Option Combo #1 <span class="cost">$1,235.00</span></label>
+                <ul>
+                    <li>Power Windows, Doors, Cruise Control</li>
+                </ul>
+                <input type="radio" id="combo-2" name="options" value="3354">
+                <label for="combo-2">Option Combo #2 <span class="cost">$3,354.00</span></label>
+                <ul>
+                    <li>Rear spoiler and Fog Lamps</li>
+                    <li>Keyless Entry</li>
+                    <li>Power Tilt & Slide Moonroof</li>
+                    <li>Power Windows, Doors, Cruise Control</li>
+                </ul>
+                <input type="radio" id="combo-3" name="options" value="0">
+                <label for="combo-3">No Combo <span class="cost">$0</span></label>
+                <br>
+        </form>
+        <form id="dealer-form">
+            <h2 class="label">Dealer Options</h2>
+            <input type="checkbox" id="stereo-system" value="550">
+            <label for="stereo-system">Upgraded Stereo System <span class="cost">$550.00</span></label>
+            <br>
+            <input type="checkbox" id="vip-security" value="399">
+            <label for="vip-security">VIP Security System <span class="cost">$399.00</span></label>
+            <br>
+            <input type="checkbox" id="mirror" value="295">
+            <label for="mirror">Auto-dimming Mirror <span class="cost">$295.00</span></label>
+            <br>
+        </form>
+        <form id="calculation">
+            <h2 class="label">Total Price</h2>
+            <input readonly type="text" id="calcuation-field">
+            <input type="button" id="new-btn" value="Calculate!">
+        </form>
+        <br>
+        <br>
+        <br>
+        </div>
+        <div id="right-container">
+            <form id="car-color-visualizer">
+                <h2 class="label">Color</h2>
+                <div id="selector-container">
+                    <select name="colors" id="cars">
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="silver">Silver</option>
+                        <option value="white">White</option>
+                    </select>
+                    <img src="gfx/red.jpg" id="car-img" alt="Picture of your car!">
+                </div>
+            </form>
+        </div>
+        <script>
+            "use strict";
+            let selector = document.getElementById("cars");
+            let img = document.getElementById("car-img");
+
+            selector.addEventListener("change", () => {
+                img.setAttribute("src", `gfx/${selector.value}.jpg`);
+            });
+
+            let outputBox = document.getElementById("calcuation-field");
+            let calcBTN = document.getElementById("new-btn");
+            
+            calcBTN.addEventListener("click", () => {
+                let total = 0;
+                let selections = document.getElementsByTagName("input");
+
+                let selArr = Array.from(selections);
+                selArr.forEach(item => {
+                    if (item.checked) {
+                        total += parseInt(item.value);
+                    }
+                });
+
+                outputBox.value = "$ " + total.toFixed(2).toLocaleString();
+            });
+        </script>
+    </body>
+</html>

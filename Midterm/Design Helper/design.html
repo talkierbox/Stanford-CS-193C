@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Design Helper</title>
+        <style>
+            #theImage {
+                float: left;
+                width: 320px;
+                border: 5px solid blue;
+            }
+
+            #overlay-btn-rack {
+                float: right;
+            }
+
+            #overlay-container {
+                margin: 0px;
+                padding: 0px;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 25px;
+                background-color: white;
+                z-index: 20;
+                padding: 10px;
+                padding-bottom: 30px;
+                visibility: collapse;
+                width: 230px;
+                border: 1px solid black;
+            }
+
+            .close-btn {
+                position: absolute;
+                left: 220px;
+            }
+
+            #color-preview {
+                background-color: black;
+                border: 1px solid black;
+                width: 160px;
+                height: 130px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- This is a file I made full of my own helper functions. NO JQUERY WAS USED, THIS IS ALL PURE JS-->
+        <script src="hr-scripts.js"></script>
+        <script src="index.js" defer></script>
+
+        <div id="overlay-btn-rack">
+            <button id="color-btn">Color</button>
+            <button id="font-btn">Font</button>
+            <button id="box-btn">Box</button>
+        </div>
+
+        <div id="overlay-container">
+            <div id="font-overlay" class="overlay">
+                <img id="close-btn-font" class="close-btn" src="close.png" alt="close-btn-img">
+                <h2>Paragraph Font</h2>
+                <label for="paragraph-font-form">Font Family:</label>
+                <form id="paragraph-font-form">
+                    <!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_input_type_radio - Used this and then altered the values-->
+                    <input type="radio" id="serif" name="font-fam" value="serif" checked="checked">
+                    <label for="serif">Serif</label><br>
+                    <input type="radio" id="sans-serif" name="font-fam" value="sans-serif">
+                    <label for="sans-serif">Sans-Serif</label><br>
+                    <input type="radio" id="monospace" name="font-fam" value="monospace">
+                    <label for="monospace">Monospace</label>
+                    <br><br>
+                    <label for="size">Font Size (in Points):</label>
+                    <input type="number" id="size" name="size" min="1" max="999" value="12">
+                    <br><br><br>
+                    <button id="change-font-btn">Change Font</button>
+                </form>
+            </div>
+
+            <div id="box-overlay" class="overlay">
+                <img id="close-btn-box" class="close-btn" src="close.png" alt="close-btn-img">
+                <h2>Image Box Settings</h2>
+                <br>
+
+                <label for="border">Border (in Pixels): </label>
+                <input type="number" id="border" name="border" min="1" max="999" value="5">
+                <br>
+                <label for="padding">Padding (in Pixels): </label>
+                <input type="number" id="padding" name="padding" min="1" max="999" value="0">
+                <br>
+                <label for="margin">Margin (in Pixels): </label>
+                <input type="number" id="margin" name="margin" min="1" max="999" value="0">
+                <br><br>
+                <button id="change-box-btn">Change Box Settings</button>
+            </div>
+
+            <div id="color-overlay" class="overlay">
+                <img id="close-btn-color" class="close-btn" src="close.png" alt="close-btn-img">
+                <h2>Color Chooser</h2>
+                <label for="element-selector-color">Element: </label>
+                <select id="element-selector-color">
+                    <option value="text">Text</option>
+                    <option value="background">Background</option>
+                    <option value="border">Image Border</option>
+                </select>
+                <br>
+                <br>
+                <label for="red">Red</label>
+                <input type="range" id="red" name="red" min="0" max="255" step="1" value="0">
+                <label for="green">Green</label>
+                <input type="range" id="green" name="green" min="0" max="255" step="1" value="0">
+                <label for="blue">Blue</label>
+                <input type="range" id="blue" name="blue" min="0" max="255" step="1" value="0">
+                <br>
+                <div id="color-preview"></div>
+            </div>
+        </div>
+
+
+        <h1>Lorem Ipsum</h1>
+        <p>Hershraj Niranjani - CS193C - Grade me in Google Chrome, Please!</p>
+        <img src="quad.jpg" alt="Quad Photo" id="theImage" />
+        <p>Tempor orci eu lobortis elementum nibh tellus molestie nunc non. Ut morbi tincidunt augue interdum velit euismod in. Fermentum posuere urna nec tincidunt. Euismod elementum nisi quis eleifend quam adipiscing. Ultrices dui sapien eget mi proin sed libero enim. Diam vel quam elementum pulvinar etiam non quam. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Nunc id cursus metus aliquam. Est sit amet facilisis magna etiam tempor orci eu lobortis. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Tempor orci dapibus ultrices in iaculis nunc sed augue. Id donec ultrices tincidunt arcu non. Netus et malesuada fames ac. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Tincidunt ornare massa eget egestas purus viverra accumsan in. Tellus in metus vulputate eu scelerisque felis. Consequat id porta nibh venenatis cras. Fringilla ut morbi tincidunt augue interdum velit euismod in.</p>
+    </body>
+</html>

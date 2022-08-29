@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h1 id="textToReplace">Hello!</h1>
+        <input type="text" id="input-field">
+        <input type="button" id="new-btn" value="Replace!">
+        <script>
+            let textBox = document.getElementById("input-field");
+            document.getElementById("new-btn").addEventListener("click", () => {
+                document.getElementById("textToReplace").innerHTML = textBox.value;
+            })
+        </script>
+    </body>
+</html>

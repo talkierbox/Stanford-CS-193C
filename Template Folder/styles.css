@@ -1,0 +1,15 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 90px;
+    row-gap: 5px;
+}
+
+h1 {
+    grid-column: 1/1;
+    grid-row: 1/1;
+}

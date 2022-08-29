@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Stanford Gallery</title>
+		<style>
+			#caption {
+				padding: 10px;
+				box-sizing: border-box;
+				color: white;
+				font-size: 14pt;
+				font-family: sans-serif;
+				background-color: #008800;
+				opacity: 0.5;
+				position: absolute;
+				top: 540px;
+				width: 800px;
+				height: 60px;
+			}
+
+			#photoSection {
+				position: absolute;
+			}
+
+			#photo {
+				height: 600px;
+				width: 800px;
+			}
+
+			#backwardOverlay {
+				width: 401px;
+				height: 600px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+
+			
+			#forwardOverlay {
+				width: 400px;
+				height: 600px;
+				position: absolute;
+				top: 0px;
+				left: 400px;
+			}
+
+		</style>
+	</head>
+		<body>
+			<div id="photoSection">
+				<img  id='photo' src='memchu.jpg' alt='photo' />
+				<div id="caption">Stanford Memorial Church - the church used to have an 80' bell tower, which fell in the 1906 earthquake.</div>
+				<div id="forwardOverlay"></div>
+				<div id="backwardOverlay"></div>
+			</div>
+
+			<script>
+			"use strict";
+			var photoArray = [
+					{filename: "memchu.jpg",
+					caption: "Stanford Memorial Church - the church used to have an 80' bell tower, which fell in the 1906 earthquake."},
+					{filename: "quad.jpg",
+					caption: "The Stanford Quad"},
+					{filename: "hoop.jpg",
+					caption: "The <i>Red Hoop Fountain</i> with Green Library in the background."},
+					{filename: "memorial-court.jpg",
+					caption: "Memorial Court (in the front of the Quad) with Rodin's <i>Burghers of Calais</i> statues."},
+					{filename: "gates.jpg",
+					caption: "The Gates Building - home of Stanford Computer Science."},
+					{filename: "stone-river.jpg",
+					caption: "The Stone River statue near the Cantor Arts Center (Stanford's own art museum)."},
+				];
+
+				let photoSection = document.getElementById("photoSection");
+				let h = window.innerHeight;
+				let w = window.innerWidth;
+
+				photoSection.style.left = `${(innerWidth - 800) / 2}px`;
+				photoSection.style.top = `${(innerHeight - 600) / 2}px`;
+
+				window.addEventListener("resize", () => {
+					let h = window.innerHeight;
+					let w = window.innerWidth;
+
+					photoSection.style.left = `${(innerWidth - 800) / 2}px`;
+					photoSection.style.top = `${(innerHeight - 600) / 2}px`;
+
+				}, false);
+
+				let forwardOverlay = document.getElementById("forwardOverlay");
+				let backwardOverlay = document.getElementById("backwardOverlay");
+				let photo = document.getElementById("photo");
+				let caption = document.getElementById("caption");
+
+
+				let imageIndex = 0;
+				forwardOverlay.addEventListener("click", () => {
+					imageIndex++
+					if(imageIndex == photoArray.length){
+						imageIndex = 0;
+					} 
+					photo.src = photoArray[imageIndex].filename;
+					caption.innerHTML = photoArray[imageIndex].caption;
+				}, false);
+
+				backwardOverlay.addEventListener("click", () => {
+					imageIndex--
+					if(imageIndex == -1){
+						imageIndex = photoArray.length - 1;
+					} 
+					photo.src = photoArray[imageIndex].filename;
+					caption.innerHTML = photoArray[imageIndex].caption;
+				}, false);
+
+
+			</script>
+
+		</body>
+</html>

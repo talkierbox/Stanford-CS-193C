@@ -1,0 +1,147 @@
+* {
+    font-family: sans-serif;
+}
+
+h1 {
+    order: 2;
+    font-size: 60px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/*
+div {
+    border: 1px solid blue;
+}
+*/
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 123px;
+    row-gap: 5px;
+}
+
+#connection-banner {
+    display: flex;
+    flex-direction: row;
+    background-color: #9A0000;
+    color: #FFFFFF; 
+    font-family: sans-serif;
+    grid-column: 1/3;
+    grid-row: 1/1;
+
+}
+
+#center-items {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/3;
+    grid-row: 2/5;
+}
+
+#sidebar-right {
+    display: flex;
+    flex-direction: column;
+    grid-column: 3/4;
+    grid-row:1/4;
+    margin: 2px;
+    padding: 2px;
+}
+
+#inputContainer {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#inputField {
+    order: 2;
+    width: 1fr;
+    height: 100px;
+    margin: 5px;
+}
+
+#inputButton {
+    order: 3;
+    margin: 5px;
+    padding: 5px;
+    width: 50px;
+    height: 25px;
+}
+
+#status-updates {
+    order: 3;
+}
+
+#page-info {
+    order: 1;
+    font-size: 40px;
+    margin: 20px;
+}
+
+#tree-logo {
+    order: 1;
+}
+
+#obama {
+    order: 1;
+    height: 300px;
+    width: 300px;
+}
+
+.image-holster {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 2/4;
+}
+
+.info-header {
+    background-color: rgba(192, 105, 105, 0.614);
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    margin: 8px;
+    padding: 3px;
+    border: 2.2px solid black;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.update {
+    border-bottom: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    order: 4;
+    line-height: 20px;
+}
+
+.hashtags {
+    color: blue;
+}
+
+.txtGroup1 {
+    order: 3;
+    text-indent: 10px;
+}
+
+.txtGroup2 {
+    order: 7;
+    font-weight: bold;
+    text-indent: 10px;
+
+}
+
+#about-me {
+    order: 2; 
+}
+
+
+#friends {
+    order: 5;
+}
