@@ -4,7 +4,7 @@ let isFirstClick = true;
 
 // This does not use jQuery! This is my helper function inside of hr-scripts.js!
 $(`#btn-clear`).addEventListener("click", () => {
-    $(`#inputBox`).value = "";
+    $(`#inputBox`).value = ""; // Correction! This should be .innerHTML = ""; 
 });
 
 // This does not use jQuery! This is my helper function inside of hr-scripts.js!
