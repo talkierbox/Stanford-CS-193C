@@ -10,13 +10,13 @@ Thanks!
 ## Did you ace this class???
 -> No. Here's how I did:
 
-Assignment 1 - 99/100
-Assignment 2 - 96/100
-Assignment 3 - 92/100
-Assignment 4 - 100/100
-Assignment 5 - 92.5/100
-
-Midterm - 99/100
-Final (Terminology Quiz) - 100/100
-
+Assignment 1 - 99/100 <br>
+Assignment 2 - 96/100 <br>
+Assignment 3 - 92/100 <br>
+Assignment 4 - 100/100 <br>
+Assignment 5 - 92.5/100 <br>
+<br>
+Midterm - 99/100 <br>
+Final (Terminology Quiz) - 100/100 <br>
+<br>
 Final Class Grade: A+
